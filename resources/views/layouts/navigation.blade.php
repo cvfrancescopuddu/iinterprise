@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('client.list')" :active="request()->routeIs('client.list')">
+                        {{ __('Clienti') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -70,6 +73,7 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            
         </div>
 
         <!-- Responsive Settings Options -->
