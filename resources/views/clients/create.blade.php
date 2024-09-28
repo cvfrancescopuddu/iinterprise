@@ -17,7 +17,7 @@
                             </div>
 
                         </div>
-                        <form action="{{ route('client.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('client.store') }}" method="GET" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="">Nome</label>
@@ -46,7 +46,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Status</label>
-                                <input type="text" class="form-control" name="ststus">
+                                <input type="text" class="form-control" name="status">
                             </div>
                             <div class="form-group">
                                 <label for="">Note</label>

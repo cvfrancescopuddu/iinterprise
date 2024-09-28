@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
     <div class="main-content mt-5">
         @if ($errors->any())
             @foreach ($errors->all() as $error)
@@ -68,4 +66,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-app-layout>

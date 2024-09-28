@@ -24,17 +24,17 @@
                                 <div class="col-md-6 d-flex justify-content-end">
                                     <form method="GET" action="{{ route('client.search') }}" class="d-flex"
                                         role="search">
-                                        <input class="form-control me-2" type="search" name="search"
-                                            placeholder="Search" aria-label="Search">
+                                        <input class="form-control me-2" name="search" placeholder="Search"
+                                            aria-label="Search">
                                         <button class="btn btn-outline-success" type="submit"><i
                                                 class="bi bi-search"></i></button>
                                     </form>
 
                                     <div class="col-md-4 d-flex justify-content-end">
-                                        <a class="btn btn-sm btn-success mx-1" href="{{ route('client.create') }}"><i
-                                                class="bi bi-plus-circle mt-2"></i></a>
-                                        <a class="btn btn-sm btn-dark mx-1" href="{{ route('client.trashed') }}"><i
-                                                class="bi bi-trash3 mt-2"></i></a>
+                                        <a class="btn btn-sm btn-outline-success mx-1 d-flex align-items-center"
+                                            href="{{ route('client.create') }}">New Client</a>
+                                        <a class="btn btn-sm btn-outline-dark mx-1 d-flex align-items-center"
+                                            href="{{ route('client.trashed') }}">Trash</a>
                                     </div>
                                 </div>
 
@@ -64,11 +64,9 @@
                                                         <td>{{ $client->citta }}</td>
                                                         <td>{{ $client->tipo }}</td>
                                                         <td>{{ $client->status }}</td>
-                                                        <td> <a class="btn btn-sm btn-info" href=""
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#noteModal{{ $client->cid }}"
-                                                                data-id="{{ $client->cid }}"><i
-                                                                    class="bi bi-info-circle"></i></a></td>
+                                                        <td>
+                                                            <a class="btn btn-sm btn-info" href="" data-bs-toggle="modal" data-bs-target="#noteModal{{ $client->cid }}" data-id="{{ $client->cid }}"><i class="bi bi-info-circle"></i></a>
+                                                        </td>
                                                         <td>
                                                             <div class="d-flex">
                                                                 <a class="btn btn-sm btn-success mx-2"
@@ -89,6 +87,28 @@
                                                             </div>
                                                         </td>
                                                     </tr>
+
+                                                    <div class="modal fade" id="noteModal{{ $client->cid }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Cliente: {{ $client->nome }} {{ $client->cognome }}</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <!-- Visualizza le note del cliente -->
+                                                                    @if ($client->note)
+                                                                        <p>{{ $client->note }}</p>
+                                                                    @else
+                                                                        <p>Nessuna nota disponibile</p>
+                                                                    @endif
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 @endforeach
                                             </tbody>
                                         </table>
