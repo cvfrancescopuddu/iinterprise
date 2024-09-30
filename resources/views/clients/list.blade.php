@@ -32,9 +32,9 @@
 
                                     <div class="col-md-4 d-flex justify-content-end">
                                         <a class="btn btn-sm btn-outline-success mx-1 d-flex align-items-center"
-                                            href="{{ route('client.create') }}">New Client</a>
+                                            href="{{ route('client.create') }}">Nuovo</a>
                                         <a class="btn btn-sm btn-outline-dark mx-1 d-flex align-items-center"
-                                            href="{{ route('client.trashed') }}">Trash</a>
+                                            href="{{ route('client.trashed') }}">Cestino</a>
                                     </div>
                                 </div>
 

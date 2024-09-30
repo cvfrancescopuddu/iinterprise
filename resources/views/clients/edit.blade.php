@@ -17,9 +17,6 @@
                                     <div class="col-md-6">
                                         <h4> Modifica Cliente</h4>
                                     </div>
-                                    <div class="col-md-6 d-flex justify-content-end">
-
-                                    </div>
                                 </div>
                             </div>
 
@@ -29,40 +26,46 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('GET')
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="floatingInput" name="nome"
-                                            value="{{ $client->nome }}">
-                                        <label for="floatingInput">Nome</label>
+                                    <div class="row g-1">
+                                        <div class="col form-floating mb-3">
+                                            <input class="form-control" id="floatingInput" name="nome"
+                                                value="{{ $client->nome }}">
+                                            <label for="floatingInput">Nome</label>
+                                        </div>
+                                        <div class="col form-floating mb-3">
+                                            <input class="form-control" id="floatingInput" name="cognome"
+                                                value="{{ $client->cognome }}">
+                                            <label for="floatingInput">Cognome</label>
+                                        </div>
                                     </div>
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="floatingInput" name="cognome"
-                                            value="{{ $client->cognome }}">
-                                        <label for="floatingInput">Cognome</label>
+                                    <div class="row g-1">
+                                        <div class="col form-floating mb-3">
+                                            <input class="form-control" id="floatingInput" name="cellulare"
+                                                value="{{ $client->cellulare }}">
+                                            <label for="floatingInput">Cellulare</label>
+                                        </div>
+                                        <div class="col form-floating mb-3">
+                                            <input class="form-control" id="floatingInput" name="email"
+                                                value="{{ $client->email }}">
+                                            <label for="floatingInput">Email</label>
+                                        </div>
+                                        <div class="col form-floating mb-3">
+                                            <input class="form-control" id="floatingInput" name="citta"
+                                                value="{{ $client->citta }}">
+                                            <label for="floatingInput">Città</label>
+                                        </div>
                                     </div>
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="floatingInput" name="cellulare"
-                                            value="{{ $client->cellulare }}">
-                                        <label for="floatingInput">Cellulare</label>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="floatingInput" name="email"
-                                            value="{{ $client->email }}">
-                                        <label for="floatingInput">Email</label>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="floatingInput" name="citta"
-                                            value="{{ $client->citta }}">
-                                        <label for="floatingInput">Città</label>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="floatingInput" name="tipo"
-                                            value="{{ $client->tipo }}">
-                                        <label for="floatingInput">Tipo Cliente</label>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="floatingInput" name="status"
-                                            value="{{ $client->status }}">
-                                        <label for="floatingInput">Status</label>
+                                    <div class="row g-1">
+                                        <div class="col form-floating mb-3">
+                                            <input class="form-control" id="floatingInput" name="tipo"
+                                                value="{{ $client->tipo }}">
+                                            <label for="floatingInput">Tipo Cliente</label>
+                                        </div>
+                                        <div class="col form-floating mb-3">
+                                            <input class="form-control" id="floatingInput" name="status"
+                                                value="{{ $client->status }}">
+                                            <label for="floatingInput">Status</label>
+                                        </div>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <textarea class="form-control" name="note" id="floatingInput">{{ $client->note }}</textarea>

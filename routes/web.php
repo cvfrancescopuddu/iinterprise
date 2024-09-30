@@ -17,6 +17,7 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'countClients'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
+
 /**
  * google authantication
  */
@@ -68,6 +69,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/client/{id}/force_delete', [ClientController::class, 'forceDelete'])->name('client.force_delete');
 
     Route::get('/client/search', [ClientController::class, 'search'])->name('client.search');
+
+ 
 
     /*
     *routes for charts
