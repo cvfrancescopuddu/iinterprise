@@ -82,12 +82,7 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            {{-- <a class="btn btn-sm btn-info" href=""
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#noteModal{{ $client->cid }}"
-                                                                data-id="{{ $client->cid }}"><i
-                                                                    class="bi bi-info-circle"></i></a>
-                                                                     --}}
+
                                                             <button tabindex="0" type="button" class="btn btn-sm btn-info"
                                                                 data-bs-toggle="popover" data-bs-placement="right"
                                                                 data-bs-custom-class="custom-popover"
@@ -118,35 +113,6 @@
                                                             </div>
                                                         </td>
                                                     </tr>
-
-                                                    <div class="modal fade" id="noteModal{{ $client->cid }}"
-                                                        tabindex="-1" aria-labelledby="exampleModalLabel"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">
-                                                                        Cliente: {{ $client->nome }}
-                                                                        {{ $client->cognome }}</h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <!-- Visualizza le note del cliente -->
-                                                                    @if ($client->note)
-                                                                        <p>{{ $client->note }}</p>
-                                                                    @else
-                                                                        <p>Nessuna nota disponibile</p>
-                                                                    @endif
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-bs-dismiss="modal">Chiudi</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 @endforeach
                                             </tbody>
                                         </table>
