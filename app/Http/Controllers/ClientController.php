@@ -139,8 +139,28 @@ class ClientController extends Controller
             ->orWhere('citta', 'LIKE', "%{$search}%")
             ->orWhere('tipo', 'LIKE', "%{$search}%")
             ->orWhere('status', 'LIKE', "%{$search}%")
+            ->orWhere('note', 'LIKE', "%{$search}%")
             ->paginate(10);
 
-        return view('client.list', compact('clients'));
+            if($search== ""){
+                $clients =Client::where('user_id', Auth::id())->paginate(10);
+            }
+
+        return view('clients.list', compact('clients'));
+    }
+
+//update status from list
+    public function updateStatus(Request $request, $id, $status)
+    {
+        $client = Client::findOrFail($id);
+
+        if (!in_array($status, ['chiamato', 'trattativa', 'chiuso', 'ospite'])) {
+            return back()->withError('Invalid status');
+        }
+
+        $client->status = $status;
+        $client->save();
+
+        return back()->withSuccess('Status updated successfully');
     }
 }

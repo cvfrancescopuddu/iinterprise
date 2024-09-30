@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.custom-popover {
+    --bs-popover-max-width: 200px;
+    --bs-popover-border-color:#31D2F2;
+    --bs-popover-header-bg: #31D2F2;
+    --bs-popover-header-color: var(white);
+    --bs-popover-body-padding-x: 1rem;
+    --bs-popover-body-padding-y: .5rem;
+  }

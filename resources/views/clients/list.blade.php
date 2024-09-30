@@ -18,7 +18,7 @@
                     <div class="p-6 text-gray-900">
                         <div class="container mt-5">
                             <div class="row">
-                                <div class="col-md-6 " style="vertical-align: middle;">
+                                <div class="col-md-6" style="vertical-align: middle;">
                                     <h4> Clienti</h4>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end">
@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
 
-                                <div class="card-body">
+                                <div class="card-body mt-2">
                                     <div class="table-responsive-xl">
                                         <table class="table table-hover">
                                             <thead>
@@ -63,9 +63,40 @@
                                                         <td>{{ $client->email }}</td>
                                                         <td>{{ $client->citta }}</td>
                                                         <td>{{ $client->tipo }}</td>
-                                                        <td>{{ $client->status }}</td>
                                                         <td>
-                                                            <a class="btn btn-sm btn-info" href="" data-bs-toggle="modal" data-bs-target="#noteModal{{ $client->cid }}" data-id="{{ $client->cid }}"><i class="bi bi-info-circle"></i></a>
+                                                            <div class="dropdown">
+                                                                <a class="dropdown-toggle" href="#" role="button"
+                                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    {{ $client->status }}
+                                                                </a>
+                                                                <ul class="dropdown-menu">
+                                                                    @foreach (['chiamato', 'trattativa', 'chiuso', 'ospite'] as $status)
+                                                                        <li>
+                                                                            <a class="dropdown-item"
+                                                                                href="{{ route('client.updateStatus', [$client->cid, $status]) }}">
+                                                                                {{ ucfirst($status) }}
+                                                                            </a>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            {{-- <a class="btn btn-sm btn-info" href=""
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#noteModal{{ $client->cid }}"
+                                                                data-id="{{ $client->cid }}"><i
+                                                                    class="bi bi-info-circle"></i></a>
+                                                                     --}}
+                                                            <button tabindex="0" type="button" class="btn btn-sm btn-info"
+                                                                data-bs-toggle="popover" data-bs-placement="right"
+                                                                data-bs-custom-class="custom-popover"
+                                                                data-bs-trigger="focus"
+                                                                data-bs-title="{{ $client->nome }} {{ $client->cognome }}"
+                                                                data-bs-content="{{ $client->note }}"><i
+                                                                    class="bi bi-info-circle"></i>
+
+                                                            </button>
                                                         </td>
                                                         <td>
                                                             <div class="d-flex">
@@ -88,12 +119,18 @@
                                                         </td>
                                                     </tr>
 
-                                                    <div class="modal fade" id="noteModal{{ $client->cid }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="noteModal{{ $client->cid }}"
+                                                        tabindex="-1" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">Cliente: {{ $client->nome }} {{ $client->cognome }}</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    <h5 class="modal-title" id="exampleModalLabel">
+                                                                        Cliente: {{ $client->nome }}
+                                                                        {{ $client->cognome }}</h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <!-- Visualizza le note del cliente -->
@@ -104,7 +141,8 @@
                                                                     @endif
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Chiudi</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -121,7 +159,5 @@
                 </div>
             </div>
         </div>
-
-
 
 </x-app-layout>

@@ -67,6 +67,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/client/{id}/destroy', [ClientController::class, 'destroy'])->name('client.destroy');
     Route::get('/client/{id}/restore', [ClientController::class, 'restore'])->name('client.restore');
     Route::get('/client/{id}/force_delete', [ClientController::class, 'forceDelete'])->name('client.force_delete');
+    Route::get('/client/{id}/status/{status}', [ClientController::class, 'updateStatus'])->name('client.updateStatus');
 
     Route::get('/client/search', [ClientController::class, 'search'])->name('client.search');
 

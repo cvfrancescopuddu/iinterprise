@@ -1,33 +1,10 @@
-<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-    <div class="p-6 text-gray-900">
-        <h3>Urgente</h3>
-        <ul>
-            @foreach($urgentTasks as $task)
-                <li>
-                    <input type="checkbox" id="task-{{ $task->id }}" name="tasks[]">
-                    <label for="task-{{ $task->id }}">{{ $task->description }}</label>
-                </li>
-            @endforeach
-        </ul>
+<button tabindex="0" type="button" class="btn btn-sm btn-info" data-bs-toggle="popover" data-bs-placement="right"
+    data-bs-custom-class="custom-popover" data-bs-title="{{ $client->nome }} {{ $client->cognome }}"
+    data-bs-content="{{ $client->note }}"><i class="bi bi-info-circle"></i>
 
-        <h3>Importante</h3>
-        <ul>
-            @foreach($importantTasks as $task)
-                <li>
-                    <input type="checkbox" id="task-{{ $task->id }}" name="tasks[]">
-                    <label for="task-{{ $task->id }}">{{ $task->description }}</label>
-                </li>
-            @endforeach
-        </ul>
+</button>
 
-        <h3>Normale</h3>
-        <ul>
-            @foreach($normalTasks as $task)
-                <li>
-                    <input type="checkbox" id="task-{{ $task->id }}" name="tasks[]">
-                    <label for="task-{{ $task->id }}">{{ $task->description }}</label>
-                </li>
-            @endforeach
-        </ul>
-    </div>
-</div>
+
+<a tabindex="0" class="btn btn-lg btn-danger" role="button" data-bs-toggle="popover" data-bs-trigger="focus"
+    data-bs-title="{{ $client->nome }} {{ $client->cognome }}"
+    data-bs-content="{{ $client->note }}">Dismissible popover</a>
