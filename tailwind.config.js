@@ -10,7 +10,15 @@ export default {
         './resources/**/*.js',
         './resources/**/*.vue',
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        './src/**/*.html',
+        "./node_modules/flowbite/**/*.js"
+
     ],
+    safelist: [
+        'bg-red-500',
+        'text-3xl',
+        'lg:text-4xl',
+      ],
 
     theme: {
         extend: {
@@ -20,5 +28,10 @@ export default {
         },
     },
 
-    plugins: [forms],
+    plugins: [forms,
+        require('flowbite/plugin')({
+            charts: true,
+        }),
+    ],
 };
+
