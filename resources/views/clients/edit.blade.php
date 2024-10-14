@@ -57,13 +57,23 @@
                                     </div>
                                     <div class="row g-1">
                                         <div class="col form-floating mb-3">
-                                            <input class="form-control" id="floatingInput" name="tipo"
-                                                value="{{ $client->tipo }}">
-                                            <label for="floatingInput">Tipo Cliente</label>
+                                            <select class="form-control" id="floatingInput" name="tipo">
+                                                @foreach ($types as $id => $name)
+                                                    <option value="{{ $name }}"
+                                                        {{ $client->tipo == $name ? 'selected' : '' }}>
+                                                        {{ $name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <label for="floatingInput">Status</label>
                                         </div>
                                         <div class="col form-floating mb-3">
-                                            <input class="form-control" id="floatingInput" name="status"
-                                                value="{{ $client->status }}">
+                                            <select class="form-control" id="floatingInput" name="status">
+                                                @foreach ($statuses as $id => $name)
+                                                    <option value="{{ $name }}"
+                                                        {{ $client->status == $name ? 'selected' : '' }}>
+                                                        {{ $name }}</option>
+                                                @endforeach
+                                            </select>
                                             <label for="floatingInput">Status</label>
                                         </div>
                                     </div>
@@ -73,7 +83,7 @@
                                     </div>
 
                                     <div class="form-group mt-3">
-                                        <button type="submit" class="btn btn-primary">MODIFICA</button>
+                                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">MODIFICA</button>
                                     </div>
 
                                 </form>

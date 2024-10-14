@@ -9,14 +9,16 @@ use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/dashboard', [DashboardController::class, 'countClients'])->middleware(['auth', 'verified'])->name('dashboard');
+// routes/api.php
 
-
+Route::get('/dashboard/chart-data', [DashboardController::class, 'chartData'])->middleware('api');
 
 /**
  * google authantication
@@ -71,13 +73,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/client/search', [ClientController::class, 'search'])->name('client.search');
 
- 
 
-    /*
-    *routes for charts
-     */
-
-     Route::get('/chart-data', [ClientController::class, 'getClientData']);
 });
 
 require __DIR__ . '/auth.php';

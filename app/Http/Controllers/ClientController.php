@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Models\Status;
+use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
@@ -24,10 +26,12 @@ class ClientController extends Controller
     public function edit($id)
     {
         $client = Client::where('user_id', Auth::id())->findOrFail($id);
+        $statuses = Status::all()->pluck('nome_status', 'sid');
+        $types = Type::all()->pluck('tipo_cliente', 'tid');
         if (!$client) {
             abort(404);
         }
-        return view('clients.edit', compact('client'));
+        return view('clients.edit', compact('client','statuses', 'types'));
     }
 
 
@@ -163,4 +167,6 @@ class ClientController extends Controller
 
         return back()->withSuccess('Status updated successfully');
     }
+
+    
 }

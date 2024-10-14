@@ -83,7 +83,7 @@
                                                         </td>
                                                         <td>
 
-                                                            <button tabindex="0" type="button" class="btn btn-sm btn-info"
+                                                            <button tabindex="0" type="button" class="bg-cyan-400 hover:bg-cyan-500 text-white font-bold py-1 px-2 rounded"
                                                                 data-bs-toggle="popover" data-bs-placement="right"
                                                                 data-bs-custom-class="custom-popover"
                                                                 data-bs-trigger="focus"
