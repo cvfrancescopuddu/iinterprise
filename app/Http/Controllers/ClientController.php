@@ -158,7 +158,7 @@ class ClientController extends Controller
     {
         $client = Client::findOrFail($id);
 
-        if (!in_array($status, ['chiamato', 'trattativa', 'chiuso', 'ospite'])) {
+        if (!in_array($status, ['chiamato','chiamare', 'trattativa', 'chiuso', 'ospite'])) {
             return back()->withError('Invalid status');
         }
 

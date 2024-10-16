@@ -57,6 +57,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/client', [ClientController::class, 'list'])->name('client.list');
+    Route::get('/client/urgent', [DashboardController::class, 'urgentFilter'])->name('client.urgent');
+    Route::get('/client/important', [DashboardController::class, 'importantFilter'])->name('client.important');
+    Route::get('/client/done', [DashboardController::class, 'doneFilter'])->name('client.done');
 
     Route::get('/client/store', [ClientController::class, 'store'])->name('client.store');
     Route::get('/client/create', [ClientController::class, 'create'])->name('client.create');

@@ -70,7 +70,7 @@
                                                                     {{ $client->status }}
                                                                 </a>
                                                                 <ul class="dropdown-menu">
-                                                                    @foreach (['chiamato', 'trattativa', 'chiuso', 'ospite'] as $status)
+                                                                    @foreach (['chiamato','chiamare', 'trattativa', 'chiuso', 'ospite'] as $status)
                                                                         <li>
                                                                             <a class="dropdown-item"
                                                                                 href="{{ route('client.updateStatus', [$client->cid, $status]) }}">
@@ -84,7 +84,7 @@
                                                         <td>
 
                                                             <button tabindex="0" type="button" class="bg-cyan-400 hover:bg-cyan-500 text-white font-bold py-1 px-2 rounded"
-                                                                data-bs-toggle="popover" data-bs-placement="right"
+                                                                data-bs-toggle="popover" data-bs-placement="bottom"
                                                                 data-bs-custom-class="custom-popover"
                                                                 data-bs-trigger="focus"
                                                                 data-bs-title="{{ $client->nome }} {{ $client->cognome }}"
