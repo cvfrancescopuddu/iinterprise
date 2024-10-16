@@ -914,7 +914,7 @@
                         <x-application-logo-light />
                     </div>
 
-                    <x-theme-switcher/>
+                    {{-- <x-theme-switcher/> --}}
                     @if (Route::has('login'))
                         <nav class="-mx-3 flex flex-1 justify-end">
                             @auth

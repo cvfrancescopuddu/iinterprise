@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Gateways\PaypalController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -16,7 +17,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'countClients'])->middleware(['auth', 'verified'])->name('dashboard');
-// routes/api.php
+
+Route::get('/paymentPlane', [PaypalController::class, 'planes'])->name('planes.general');
 
 Route::get('/dashboard/chart-data', [DashboardController::class, 'chartData'])->middleware('api');
 
@@ -78,5 +80,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 });
+
+
+//payments route
+
+Route::post('/paypal/payment', [PaypalController::class, 'payment'])->name('paypal.payment');
+Route::get('/paypal/success', [PaypalController::class, 'success'])->name('paypal.success');
+Route::get('/paypal/cancel', [PaypalController::class, 'cancel'])->name('paypal.cancel');
 
 require __DIR__ . '/auth.php';
