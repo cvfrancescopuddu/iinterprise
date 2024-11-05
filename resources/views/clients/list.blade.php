@@ -64,7 +64,7 @@
                                                         <td>{{ $client->citta }}</td>
                                                         <td>{{ $client->tipo }}</td>
                                                         <td>
-                                                            <div class="dropdown">
+                                                            <div class="dropdown" tabindex="0" >
                                                                 <a class="dropdown-toggle" href="#" role="button"
                                                                     data-bs-toggle="dropdown" aria-expanded="false">
                                                                     {{ $client->status }}

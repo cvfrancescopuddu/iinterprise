@@ -36,7 +36,7 @@
                                     Register
                                 </a>
                             @endif
-                            <a href="{{ route('paypal.payment') }}"
+                            {{-- <a href="{{ route('paypal.payment') }}"
                                 class="flex items-center rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-cart" viewBox="0 0 16 16">
@@ -44,7 +44,7 @@
                                         d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
                                 </svg>
 
-                            </a>
+                            </a> --}}
                         @endauth
                     </nav>
                 @endif
@@ -52,7 +52,7 @@
 
             <main class="mt-6">
                 <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
-                    <a href="https://laracasts.com"
+                    <a href="#"
                         class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
                         <div
                             class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 text-red-700 sm:size-16">
@@ -76,7 +76,7 @@
                         </div>
                     </a>
 
-                    <a href="https://laravel-news.com"
+                    <a href="#"
                         class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
                         <div
                             class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16">
@@ -85,6 +85,7 @@
                               </svg>
                               
                         </div>
+
 
                         <div class="pt-3 sm:pt-5">
                             <h2 class="text-xl font-semibold text-black dark:text-white">
@@ -102,7 +103,7 @@
                         </svg>
                     </a>
 
-                    <a href="https://laravel-news.com"
+                    <a href="#"
                         class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
                         <div
                             class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16">
@@ -155,7 +156,7 @@
             </main>
 
             <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-                <p>Copyright 2023 Laravel. All rights reserved.</p>
+                <p> &copy Copyright 2024 intERPrise group. All rights reserved.</p>
             </footer>
         </div>
     </div>

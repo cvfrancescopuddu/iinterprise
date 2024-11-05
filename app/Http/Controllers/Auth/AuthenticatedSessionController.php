@@ -85,20 +85,28 @@ class AuthenticatedSessionController extends Controller
 
     public function googleAuthRedirect()
     {
+
         return Socialite::driver('google')->redirect();
     }
 
 
-    public function  googleAuthCallback()
+    public function googleAuthCallback()
     {
         $user = Socialite::driver('google')->user();
 
+ 
         $user = User::firstOrCreate([
             'email' => $user->email
         ], [
             'name' => $user->name,
             'password' => bcrypt(Str::random(24)),
         ]);
+
+
+        if (!$user->hasVerifiedEmail()) {
+            $user->sendEmailVerificationNotification();
+        }
+
         
         Auth::login($user, true);
 

@@ -19,7 +19,13 @@ class ClientController extends Controller
     //redirect to create client page
     public function create()
     {
-        return view('clients.create');
+ 
+        // Recupera tutti i tipi e stati dal database
+        $types = Type::pluck('tipo_cliente', 'tid'); // Assicurati di avere un campo 'name' nel modello Type
+        $statuses = Status::pluck('nome_status', 'sid'); // Assicurati di avere un campo 'name' nel modello Status
+
+        // Restituisci la vista con i dati necessari
+        return view('clients.create', compact('types', 'statuses'));
     }
 
     //redirect page to update client
@@ -31,7 +37,7 @@ class ClientController extends Controller
         if (!$client) {
             abort(404);
         }
-        return view('clients.edit', compact('client','statuses', 'types'));
+        return view('clients.edit', compact('client', 'statuses', 'types'));
     }
 
 
@@ -50,8 +56,8 @@ class ClientController extends Controller
         $request->validate([
             'nome' => 'required|string|max:255',
             'cognome' => 'required|string|max:255',
-            'cellulare' => 'required|string|max:255',
-            'email' => 'required|email|unique:clienti',
+            // 'cellulare' => 'required|string|max:255',
+            // 'email' => 'required|email|unique:clienti',
             'citta' => 'required|string|max:255',
             'tipo' => 'required|max:20',
             'status' => 'required|string|max:20',
@@ -87,7 +93,7 @@ class ClientController extends Controller
             'nome' => 'required|string|max:255',
             'cognome' => 'required|string|max:255',
             'cellulare' => 'required|string|max:255',
-            'email' => 'required|email|unique:clienti,email,'. $client->getKey(). ',' . $client->getKeyName(),
+            'email' => 'required|email|unique:clienti,email,' . $client->getKey() . ',' . $client->getKeyName(),
             'citta' => 'required|string|max:255',
             'tipo' => 'required|max:20',
             'status' => 'required|string|max:20',
@@ -111,22 +117,25 @@ class ClientController extends Controller
 
     //delete and destroy data
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $client = Client::where('user_id', Auth::id())->findOrFail($id);
         $client->delete();
 
         return redirect()->route('client.list');
     }
 
-//redirect to trashed data
-    public function trashed(){
+    //redirect to trashed data
+    public function trashed()
+    {
         $clients = Client::where('user_id', Auth::id())->onlyTrashed()->paginate(10);
         return view('clients.trashed',  compact('clients'));
     }
 
 
     //restore trashed data
-    public function restore($id){
+    public function restore($id)
+    {
         $client = Client::where('user_id', Auth::id())->onlyTrashed()->findOrFail($id);
         $client->restore();
         return view('clients.list');
@@ -146,19 +155,19 @@ class ClientController extends Controller
             ->orWhere('note', 'LIKE', "%{$search}%")
             ->paginate(10);
 
-            if($search== ""){
-                $clients =Client::where('user_id', Auth::id())->paginate(10);
-            }
+        if ($search == "") {
+            $clients = Client::where('user_id', Auth::id())->paginate(10);
+        }
 
         return view('clients.list', compact('clients'));
     }
 
-//update status from list
+    //update status from list
     public function updateStatus(Request $request, $id, $status)
     {
         $client = Client::findOrFail($id);
 
-        if (!in_array($status, ['chiamato','chiamare', 'trattativa', 'chiuso', 'ospite'])) {
+        if (!in_array($status, ['chiamato', 'chiamare', 'trattativa', 'chiuso', 'ospite'])) {
             return back()->withError('Invalid status');
         }
 
@@ -167,6 +176,4 @@ class ClientController extends Controller
 
         return back()->withSuccess('Status updated successfully');
     }
-
-    
 }

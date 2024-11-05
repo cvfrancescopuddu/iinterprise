@@ -27,7 +27,7 @@
                                             <label for="nome">Nome</label>
                                         </div>
                                         <div class="col form-floating mb-3">
-                                            <input class="form-control" id="cognome" placeholder="">
+                                            <input class="form-control" id="cognome" name="cognome" placeholder="">
                                             <label for="cognome">Cognome</label>
                                         </div>
                                     </div>
@@ -48,12 +48,22 @@
                                     </div>
                                     <div class="row g-1">
                                         <div class="col form-floating mb-3">
-                                            <input class="form-control" id="tipo" name="tipo" placeholder="">
-                                            <label for="tipo">Tipo</label>
+                                            <select class="form-control" id="floatingInput" name="tipo">
+                                                @foreach ($types as $id => $name)
+                                                    <option value="{{ $name }}">
+                                                        {{ $name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <label for="floatingInput">tipo</label>
                                         </div>
                                         <div class="col form-floating mb-3">
-                                            <input class="form-control" id="status" name="status" placeholder="">
-                                            <label for="status">Status</label>
+                                            <select class="form-control" id="floatingInput" name="status">
+                                                @foreach ($statuses as $id => $name)
+                                                    <option value="{{ $name }}">
+                                                        {{ $name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <label for="floatingInput">Status</label>
                                         </div>
                                     </div>
                                     <div class="form-floating mb-3">

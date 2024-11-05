@@ -1,0 +1,19 @@
+RewriteEngine on
+RewriteBase /
+ 
+# Aggiungi uno slash finale alle richieste di directory
+RewriteCond %{REQUEST_URI} !(/$|\.)
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.*[^/])$ $1/ [R=301,L]
+ 
+# Evita il loop di riscrittura escludendo le richieste già indirizzate a /public
+RewriteCond %{REQUEST_URI} !^/public/
+ 
+# Gestisci le richieste di directory reali senza lo slash finale
+RewriteCond %{REQUEST_URI} !(/$|\.)
+RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -d
+RewriteRule ^(.*)$ /$1/ [R=301,L]
+ 
+# Riscrivi tutto verso la cartella /public
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ /public/$1 [L]
