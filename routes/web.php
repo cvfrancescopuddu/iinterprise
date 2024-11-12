@@ -6,17 +6,16 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Gateways\PaypalController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
-use Laravel\Socialite\Facades\Socialite;
+
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [DashboardController::class, 'countClients'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'countClients'])->middleware(['auth','verified'])->name('dashboard');
 
 Route::get('/paymentPlane', [PaypalController::class, 'planes'])->name('planes.general');
 
@@ -33,9 +32,9 @@ Route::get('/auth/callback', [AuthenticatedSessionController::class, 'googleAuth
  * email verification and resend routes
  */
 Route::middleware('auth')->group(function () {
-    Route::get('/email/verify', [AuthenticatedSessionController::class, 'verifyNotice'])->name('verification.notice');
+    Route::get('/email/verify', [AuthenticatedSessionController::class, 'verifyNotice'])->name('verification.noticed');
 
-    Route::get('/email/verify/{id}/{hash}', [AuthenticatedSessionController::class, 'verifyEmail'])->middleware('signed')->name('verification.verify');
+    Route::get('/email/verify/{id}/{hash}', [AuthenticatedSessionController::class, 'verifyEmail'])->middleware('signed')->name('verification.verified');
 
     Route::post('/email/verification-notification', [AuthenticatedSessionController::class, 'verifyHandler'])->middleware( 'throttle:6,1')->name('verification.send');
 });
