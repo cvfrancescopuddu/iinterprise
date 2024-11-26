@@ -13,93 +13,102 @@ class DashboardController extends Controller
         $count = Client::where('user_id', Auth::id())->count();
 
         $urgentTasks = Client::where('user_id', Auth::id())
-            ->where('status', 'trattativa')->orWhere('status', 'chiamare')
-            ->count();
+            ->where(function($query) {
+                $query->where('status', 'trattativa')
+                      ->orWhere('status', 'chiamare');
+            })->count();
 
         $importantTasks = Client::where('user_id', Auth::id())
             ->where('status', 'chiamato')
             ->count();
 
         $doneTasks = Client::where('user_id', Auth::id())
-            ->where('status', 'chiuso')->orWhere('status', 'ospite')
-            ->count();
+        ->where(function($query) {
+            $query->where('status', 'chiuso')
+                  ->orWhere('status', 'ospite');
+        })->count();
 
         return view('dashboard', compact('count', 'urgentTasks', 'importantTasks', 'doneTasks'));
     }
 
-
-    // filter by  urgents status
-    public function urgentFilter(Request $request)
-    {
-        $statuses = $request->input('statuses', ['trattativa', 'chiamare']);
-        $clients = Client::where('user_id', Auth::id());
-
-        if (in_array('trattativa', $statuses) || in_array('chiamare', $statuses)) {
-            $clients->where('status', 'LIKE', "%{$statuses[0]}%")
-                ->orWhere('status', 'LIKE', "%{$statuses[1]}%");
-
-        }
-        $clients = $clients->paginate(10);
+//filter by urgent status
+    public function urgentFilter() {
+        // Crea una query per i clienti dell'utente autenticato
+        $clientsQuery = Client::where('user_id', Auth::id())
+            ->where(function($query) {
+                $query->where('status', 'trattativa')
+                      ->orWhere('status', 'chiamare');
+            });
+    
+        // Esegui la paginazione sulla query
+        $clients = $clientsQuery->paginate(10);
+        
         return view('clients.list', compact('clients'));
     }
+
+
 
     // filter by important status
     public function importantFilter(Request $request)
     {
-        $statuses = $request->input('statuses', 'chiamato');
-        $clients = Client::where('user_id', Auth::id());
+        $clientsQuery = Client::where('user_id', Auth::id())
+        ->where(function($query) {
+            $query->where('status', 'chiamato');
+        });
 
-        if ($statuses=='chiamato') {
-            $clients->where('status', 'LIKE', "%{$statuses}%");
-        }
+    // Esegui la paginazione sulla query
+    $clients = $clientsQuery->paginate(10);
+    
+    return view('clients.list', compact('clients'));
+    }
 
-        $clients = $clients->paginate(10);
+
+    // filter by  done status
+    public function doneFilter(Request $request)
+    {
+        $clientsQuery = Client::where('user_id', Auth::id())
+            ->where(function($query) {
+                $query->where('status', 'chiuso')
+                      ->orWhere('status', 'ospite');
+            });
+    
+        // Esegui la paginazione sulla query
+        $clients = $clientsQuery->paginate(10);
+        
         return view('clients.list', compact('clients'));
     }
 
-     // filter by  urgents status
-    public function doneFilter(Request $request)
-     {
-         $statuses = $request->input('statuses', ['chiuso', 'ospite']);
-         $clients = Client::where('user_id', Auth::id());
- 
-         if (in_array('chiuso', $statuses) || in_array('ospite', $statuses)) {
-             $clients->where('status', 'LIKE', "%{$statuses[0]}%")
-                 ->orWhere('status', 'LIKE', "%{$statuses[1]}%");
- 
-         }
-         $clients = $clients->paginate(10);
-         return view('clients.list', compact('clients'));
-     }
- 
 
 
 
-
-
-    //select clients for chart
+    //get data for charts
     public function chartData()
     {
-        $b2bCount = Client::where('user_id', Auth::id())->where('tipo', 'b2b')->count();
-        $b2cCount = Client::where('user_id', Auth::id())->where('tipo', 'b2c')->count();
 
-        $totalCount = Client::where('user_id', Auth::id())->count();
+        //generic get
+        $clientData = Client::where('user_id', Auth::id())->get();
 
-        $urgentCounter = Client::where('user_id', Auth::id())
-            ->where('status', 'trattativa')
-            ->orWhere('status', 'chiamare')->count();
+        //type get
+        $b2bCount = $clientData->where('tipo', 'b2b')->count();
+        $b2cCount = $clientData->where('tipo', 'b2c')->count();
 
-        $importantCounter = Client::where('user_id', Auth::id())
-            ->where('status', 'chiamato')->count();
+        $totalCount = $clientData->count();
 
-        $doneCounter = Client::where('user_id', Auth::id())
-            ->where('status', 'chiuso')
-            ->orWhere('status', 'ospite')->count();
+        $trattativa = $clientData->where('status', 'trattativa')->count();
+        $chiamare = $clientData->where('status', 'chiamare')->count();
+        $urgentCounter = $trattativa + $chiamare;
+
+
+        $importantCounter = $clientData->where('status', 'chiamato')->count();
+
+        $chiuso = $clientData->where('status', 'chiuso')->count();
+        $ospite = $clientData->where('status', 'ospite')->count();
+        $doneCounter = $chiuso + $ospite;
+
 
         $urgentRatio =  ($urgentCounter / $totalCount) * 100;
         $importantRatio = ($importantCounter / $totalCount) * 100;
         $doneRatio = ($doneCounter / $totalCount) * 100;
-
 
         return response()->json([
 
