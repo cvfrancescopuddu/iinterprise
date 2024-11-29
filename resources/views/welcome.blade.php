@@ -69,7 +69,7 @@
                             <h2 class="text-xl font-semibold text-black dark:text-white uppercase"> ENTERPRISE
                                 RESOURCE PLANNING </h2>
 
-                            <p class="mt-4 text-sm/relaxed">
+                            <p class="mt-4 text-sm">
                                 Pianifica e gestisci il tuo business con i migliori strumenti di gestione delle
                                 risorse per la tua azienda
                             </p>
@@ -91,7 +91,7 @@
                             <h2 class="text-xl font-semibold text-black dark:text-white">
                                 CUSTOMER RELATIONSHIP MANAGEMENT </h2>
 
-                            <p class="mt-4 text-sm/relaxed">
+                            <p class="mt-4 text-sm">
                                 Attraverso il CRM potrai seguire i tuoi clienti fino all'assistenza post vendita
                             </p>
                         </div>
@@ -117,7 +117,7 @@
                             <h2 class="text-xl font-semibold text-black dark:text-white uppercase"> INNOVAZIONE
                             </h2>
 
-                            <p class="mt-4 text-sm/relaxed">
+                            <p class="mt-4 text-sm">
                                 Con Interprise Scoprirai i migliori strumenti per innovare il tuo business e
                                 aumentare la tua competitività
                             </p>
@@ -146,7 +146,7 @@
                         <div class="pt-3 sm:pt-5">
                             <h2 class="text-xl font-semibold text-black dark:text-white">PERSONALIZZA IL TUO ERP</h2>
 
-                            <p class="mt-4 text-sm/relaxed">
+                            <p class="mt-4 text-sm">
                                 Puoi richiedere fino a 2 personalizzazioni gratuite per ottimizzare il software alle tue
                                 esigenze. non esitare a contattarci
                             </p>

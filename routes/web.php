@@ -35,10 +35,13 @@ Route::get('/auth/callback', [AuthenticatedSessionController::class, 'googleAuth
 /**
  * email verification and resend routes
  */
-Route::middleware('auth')->group(function () {
-    Route::get('/email/verify', [AuthenticatedSessionController::class, 'verifyNotice'])->name('verification.noticed');
+Route::middleware(['auth','verified'])->group(function () {
 
-    Route::get('/email/verify/{id}/{hash}', [AuthenticatedSessionController::class, 'verifyEmail'])->middleware('signed')->name('verification.verified');
+
+
+    Route::get('/email/verify', [AuthenticatedSessionController::class, 'verifyNotice'])->name('verification.notice');
+
+    Route::get('/email/verify/{id}/{hash}', [AuthenticatedSessionController::class, 'verifyEmail'])->middleware('signed')->name('verification.verify');
 
     Route::post('/email/verification-notification', [AuthenticatedSessionController::class, 'verifyHandler'])->middleware( 'throttle:6,1')->name('verification.send');
 });

@@ -53,18 +53,16 @@ class AuthenticatedSessionController extends Controller
     }
 
 
-    /**
-     * verify email notice handler
-     */
+
+
+    // redirect to email sent page
     public function verifyNotice()
     {
         return view('auth.verify-email');
     }
 
-    /**
-     * email verification handler
-     */
 
+    //redirect to dashboard when email link is clicked
     public function verifyEmail(EmailVerificationRequest $request)
     {
         $request->fulfill();
@@ -72,14 +70,15 @@ class AuthenticatedSessionController extends Controller
         return redirect()->route('dashboard');
     }
 
-    /**
-     * resending the email verification handler
-     */
-    public function verifyHandler(Request $request)
-    {
+
+    //resending the email verification route if user clicks on resend link
+
+
+    public function verifyHandler(Request $request){
         $request->user()->sendEmailVerificationNotification();
 
-        return back()->with('message', 'Verification link sent!');
+        return redirect()->view('auth.verify-email');
+
     }
 
 
@@ -95,7 +94,7 @@ class AuthenticatedSessionController extends Controller
     {
         $user = Socialite::driver('google')->user();
 
- 
+
         $user = User::firstOrCreate([
             'email' => $user->email
         ], [
@@ -105,10 +104,10 @@ class AuthenticatedSessionController extends Controller
 
 
         if (!$user->hasVerifiedEmail()) {
-            $user->sendEmailVerificationNotification();
+            $user->verifyNotice();
         }
 
-        
+
         Auth::login($user, true);
 
         return redirect('/dashboard');
