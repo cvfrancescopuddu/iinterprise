@@ -50,11 +50,9 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/login')->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
-        ->header('Pragma', 'no-cache')
-        ->header('Expires', 'Fri, 01 Jan 1990 00:00:00 GMT');;
+            ->header('Pragma', 'no-cache')
+            ->header('Expires', 'Fri, 01 Jan 1990 00:00:00 GMT');
     }
-
-
 
 
     // redirect to email sent page
@@ -63,8 +61,7 @@ class AuthenticatedSessionController extends Controller
         return view('auth.verify-email');
     }
 
-
-    //redirect to dashboard when email link is clicked
+    // redirect to dashboard when email link is clicked
     public function verifyEmail(EmailVerificationRequest $request)
     {
         $request->fulfill();
@@ -72,47 +69,36 @@ class AuthenticatedSessionController extends Controller
         return redirect()->route('dashboard');
     }
 
-
-    //resending the email verification route if user clicks on resend link
-
-
-    public function verifyHandler(Request $request){
+    // resending the email verification route if user clicks on resend link
+    public function verifyHandler(Request $request)
+    {
         $request->user()->sendEmailVerificationNotification();
 
         return redirect()->view('auth.verify-email');
-
     }
-
-
 
     public function googleAuthRedirect()
     {
-
         return Socialite::driver('google')->redirect();
     }
-
 
     public function googleAuthCallback()
     {
         $user = Socialite::driver('google')->user();
 
-
-        $user = User::firstOrCreate([
-            'email' => $user->email
-        ], [
-            'name' => $user->name,
-            'password' => bcrypt(Str::random(24)),
-        ]);
-
+        // Utilizzare la cache per evitare di creare utenti duplicati
+        $user = Cache::remember("google_user_{$user->email}", 60, function () use ($user) {
+            return User::firstOrCreate([
+                'email' => $user->email
+            ], [
+                'name' => $user->name,
+                'password' => bcrypt(Str::random(24)),
+            ]);
+        });
 
         if (!$user->hasVerifiedEmail()) {
-
             $user->sendEmailVerificationNotification();
-            // return $this->verifyNotice();
-
-
         }
-
 
         Auth::login($user, true);
 
