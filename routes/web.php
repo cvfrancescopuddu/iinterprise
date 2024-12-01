@@ -17,13 +17,13 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'countClients'])->name('dashboard');
-
+    Route::get('/dashboard/chart-data', [DashboardController::class, 'chartData'])->middleware('api');
 });
 
 
 Route::get('/paymentPlane', [PaypalController::class, 'planes'])->name('planes.general');
 
-Route::get('/dashboard/chart-data', [DashboardController::class, 'chartData'])->middleware('api');
+
 
 /**
  * google authantication

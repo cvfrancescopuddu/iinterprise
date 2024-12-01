@@ -104,7 +104,11 @@ class AuthenticatedSessionController extends Controller
 
 
         if (!$user->hasVerifiedEmail()) {
-            $user->verifyNotice();
+
+            $user->sendEmailVerificationNotification();
+            // return $this->verifyNotice();
+
+
         }
 
 

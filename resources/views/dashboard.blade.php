@@ -1,10 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800  leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="row flex flex-wrap mx-4">
@@ -14,7 +13,7 @@
                         <div class="flex justify-between mb-3">
                             <div class="flex items-center">
                                 <div class="flex justify-center items-center">
-                                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white pe-1">Your
+                                    <h5 class="text-xl font-bold">Your
                                         team's progress</h5>
                                     <svg data-popover-target="chart-info" data-popover-placement="bottom"
                                         class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white cursor-pointer ms-1"
@@ -49,7 +48,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="bg-gray-50 p-3 rounded-lg">
                             <div class="grid grid-cols-3 gap-3 mb-2">
                                 <a href="{{ route('client.urgent') }}" target="_self" rel="noopener noreferrer">
@@ -118,10 +116,8 @@
                                 </dl>
                             </div>
                         </div>
-
                         <!-- Radial Chart -->
                         <div class="py-6" id="radial-chart"></div>
-
                         <div
                             class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
                             <div class="flex justify-between items-center pt-5">
@@ -178,14 +174,10 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-6 w-1/2">
                     <div style="height: 80%;">
-
-
                         <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
-
                             <div class="flex justify-between items-start w-full">
                                 <div class="flex-col items-center">
                                     <div class="flex items-center mb-1">
@@ -208,34 +200,27 @@
                                                 <h3 class="font-semibold text-gray-900 dark:text-white">Clienti B2C
                                                 </h3>
                                                 <p>Portafoglio clienti appartenenti al mercato del consumo</p>
-
                                             </div>
                                             <div data-popper-arrow></div>
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
-
                             <!-- Line Chart -->
                             <div class="py-6" id="pie-chart"></div>
-
-
                         </div>
-
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </x-app-layout>
 
-<script>
+{{-- <script>
     window.history.pushState(null, document.title, window.location.href);
     window.addEventListener('popstate', function(event) {
         window.history.pushState(null, document.title, window.location.href);
     });
-</script>
+</script> --}}
+
+
