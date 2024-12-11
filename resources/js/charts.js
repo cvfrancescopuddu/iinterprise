@@ -6,9 +6,9 @@ import './theme-manager';
 
 import Alpine from 'alpinejs';
 
-window.Alpine = Alpine;
+// window.Alpine = Alpine;
 
-Alpine.start();
+// Alpine.start();
 
 
 //script for charts

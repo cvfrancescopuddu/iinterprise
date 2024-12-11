@@ -54,6 +54,7 @@
                             @csrf
 
                             <x-dropdown-link :href="route('logout')"
+                            
                                 onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
@@ -106,6 +107,7 @@
                     @csrf
 
                     <x-responsive-nav-link :href="route('logout')"
+                    
                         onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
@@ -115,3 +117,32 @@
         </div>
     </div>
 </nav>
+
+<script>
+    function logout() {
+        // Invia una richiesta AJAX per effettuare il logout
+        fetch('{{ route('logout') }}', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}', // Includi il token CSRF
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({})
+        })
+        .then(response => {
+            if (response.ok) {
+                // Pulisci il localStorage
+                localStorage.clear(); // o sessionStorage.clear();
+                sessionStorage.clear();
+                // Reindirizza alla pagina di login
+                loginPage = window.location.href = 'login'; 
+                loginPage.reload()// Sostituisci con il percorso della tua pagina di login
+            } else {
+                console.error('Logout failed');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+</script>

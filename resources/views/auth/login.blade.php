@@ -49,3 +49,18 @@
         </div>
     </form>
 </x-guest-layout>
+
+<script>
+
+        // Funzione che verrà eseguita quando il DOM è completamente carico
+        document.addEventListener("DOMContentLoaded", function() {
+            // Controlla se la pagina è già stata ricaricata
+            if (!sessionStorage.getItem('pageReloaded')) {
+                // Imposta un flag nel sessionStorage
+                sessionStorage.setItem('pageReloaded', 'true');
+                // Ricarica la pagina
+                location.reload();
+            }
+        });
+    
+</script>

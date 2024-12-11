@@ -43,33 +43,33 @@
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">Nome</th>
-                                                    <th scope="col">Cognome</th>
-                                                    <th scope="col">Cellulare</th>
-                                                    <th scope="col">Email</th>
-                                                    <th scope="col">Città</th>
-                                                    <th scope="col">Tipo</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Note</th>
-                                                    <th scope="col">Azioni</th>
+                                                    <th scope="col" class="text-center">Nome</th>
+                                                    <th scope="col" class="text-center">Cognome</th>
+                                                    <th scope="col" class="text-center">Cellulare</th>
+                                                    <th scope="col" class="text-center">Email</th>
+                                                    <th scope="col" class="text-center">Città</th>
+                                                    <th scope="col" class="text-center">Tipo</th>
+                                                    <th scope="col" class="text-center">Status</th>
+                                                    <th scope="col" class="text-center">Note</th>
+                                                    <th scope="col" class="text-center">Azioni</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach ($clients as $client)
                                                     <tr>
-                                                        <td>{{ $client->nome }}</td>
-                                                        <td>{{ $client->cognome }}</td>
-                                                        <td>{{ $client->cellulare }}</td>
-                                                        <td>{{ $client->email }}</td>
-                                                        <td>{{ $client->citta }}</td>
-                                                        <td>{{ $client->tipo }}</td>
-                                                        <td>
-                                                            <div class="dropdown" tabindex="0" >
+                                                        <td class="text-center">{{ $client->nome }}</td>
+                                                        <td class="text-center">{{ $client->cognome }}</td>
+                                                        <td class="text-center">{{ $client->cellulare }}</td>
+                                                        <td class="text-center">{{ $client->email }}</td>
+                                                        <td class="text-center">{{ $client->citta }}</td>
+                                                        <td class="text-center">{{ $client->tipo }}</td>
+                                                        <td class="text-center">
+                                                            <div class="dropdown" tabindex="0" style="position: absolute;">
                                                                 <a class="dropdown-toggle" href="#" role="button"
                                                                     data-bs-toggle="dropdown" aria-expanded="false">
                                                                     {{ $client->status }}
                                                                 </a>
-                                                                <ul class="dropdown-menu">
+                                                                <ul class="dropdown-menu" style="position: relative; top: 100%; left: 0; z-index: 2000;">
                                                                     @foreach (['chiamato','chiamare', 'trattativa', 'chiuso', 'ospite'] as $status)
                                                                         <li>
                                                                             <a class="dropdown-item"
@@ -81,7 +81,7 @@
                                                                 </ul>
                                                             </div>
                                                         </td>
-                                                        <td>
+                                                        <td style="display: flex; justify-content: center; align-items: center">
 
                                                             <button tabindex="0" type="button" class="bg-cyan-400 hover:bg-cyan-500 text-white font-bold py-1 px-2 rounded"
                                                                 data-bs-toggle="popover" data-bs-placement="bottom"
@@ -93,9 +93,9 @@
 
                                                             </button>
                                                         </td>
-                                                        <td>
-                                                            <div class="d-flex">
-                                                                <a class="btn btn-sm btn-success mx-2"
+                                                        <td class="">
+                                                            <div class="d-flex justify-content-center align-items-center">
+                                                                <a class="btn btn-sm btn-success"
                                                                     href="{{ route('client.show', $client->cid) }}"><i
                                                                         class="bi bi-eye"></i></a>
                                                                 <a class="btn btn-sm btn-primary mx-2"

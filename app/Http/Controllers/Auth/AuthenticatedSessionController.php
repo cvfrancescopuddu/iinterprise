@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\View\View;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -43,6 +44,7 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         Cache::flush();
+        Session::flush();
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

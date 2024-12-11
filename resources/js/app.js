@@ -19,5 +19,3 @@ const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstra
 
 
 
-
-
