@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Gateways\PaypalController;
@@ -86,6 +87,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 });
+
+
 
 
 //payments route

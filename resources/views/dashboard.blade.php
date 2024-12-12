@@ -95,3 +95,4 @@
         </div>
     </div>
 </x-app-layout>
+@vite(['resources/js/charts.js'])

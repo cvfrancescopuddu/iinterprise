@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class PreventBackMiddleware
+class Authenticate
 {
     /**
      * Handle an incoming request.
@@ -23,7 +23,7 @@ class PreventBackMiddleware
         // Disabilita la cache
         $response = $next($request);
         $response->headers->set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
-        $response->headers->set('Pragma', 'no-cache');
+        $response->headers->set('Pragma', 'no-store');
 
         return $response;
     }
